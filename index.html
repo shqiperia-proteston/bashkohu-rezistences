@@ -428,7 +428,7 @@
   .video-js-wrapper {
     position: relative;
     width: 100%;
-    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    padding-bottom: 56.25%;
     height: 0;
   }
 
@@ -458,7 +458,6 @@
     margin: 0;
   }
 
-  /* Video.js custom styling */
   .video-js {
     background-color: #000;
   }
@@ -491,7 +490,6 @@
     .video-description { font-size: 13px; }
   }
 
-  /* ---------- Page-load animation ---------- */
   .reveal {
     opacity: 0;
     transform: translateY(24px);
@@ -511,7 +509,6 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* scroll-triggered reveal for sections below the fold */
   .scroll-reveal {
     opacity: 0;
     transform: translateY(30px);
@@ -527,44 +524,19 @@
     .btn:hover { transform: none; }
   }
 
-  /* ---------- Mobile ---------- */
   @media (max-width: 768px) {
     .hero { padding: 54px 20px 42px; }
-
     .emblem { width: 104px; height: 104px; }
-
-    .title {
-      font-size: clamp(46px, 15vw, 64px);
-      margin-top: 20px;
-    }
-
+    .title { font-size: clamp(46px, 15vw, 64px); margin-top: 20px; }
     .subtitle { font-size: 16px; }
-
-    .btn-row {
-      margin-top: 34px;
-      flex-direction: column;
-      align-items: stretch;
-      max-width: 380px;
-      margin-left: auto;
-      margin-right: auto;
-      gap: 12px;
-    }
-
+    .btn-row { margin-top: 34px; flex-direction: column; align-items: stretch; max-width: 380px; margin-left: auto; margin-right: auto; gap: 12px; }
     .btn-primary, .btn-secondary { font-size: 17px; }
     .btn-secondary { font-size: 16px; }
-
     .stats { grid-template-columns: repeat(2, 1fr); }
-
-    .stat-cell {
-      padding: 26px 12px;
-      border-bottom: 1px solid var(--hairline);
-    }
-
+    .stat-cell { padding: 26px 12px; border-bottom: 1px solid var(--hairline); }
     .stat-num { font-size: 40px; }
     .stat-label { font-size: 12px; }
-
     .features { grid-template-columns: 1fr; }
-
     .feature-card { padding: 34px 26px; }
     .feature-title { font-size: 22px; }
     .feature-body { font-size: 16px; }
@@ -584,7 +556,7 @@
 
   <div class="hero">
     <div class="emblem reveal">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAREAAAEdCAYAAAArVlP1AADxkElEQVR4nOx9d4BdR3X+d2bm3vvq9qLVqhdbNsa4YBtMMZhqHGN675hAKAGcQAgh1CQk1CT0AD/TO9hgjOkGY1zBBXfL6lqttpdX770zc35/z" alt="Zgjimi Kombëtar">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23e11b22' width='200' height='200'/%3E%3Ctext x='50%25' y='50%25' font-size='80' font-weight='bold' fill='white' text-anchor='middle' dy='.3em'%3EZK%3C/text%3E%3C/svg%3E" alt="Zgjimi Kombëtar">
     </div>
 
     <h1 class="title reveal">Zgjimi<br><span class="red">Kombëtar</span></h1>
@@ -647,12 +619,9 @@
     <div class="about-eyebrow">Rreth Nesh</div>
     <h2>"Zgjimi <span class="red">Kombëtar</span>"</h2>
    
-    <p>
-      Serveri ynë në Discord u krijua me një qëllim të vetëm: të krijojë një vend takimi për ata që duan të koordinohen, të organizohen dhe të mbështesin njëri-tjetrin në kuadër të protestës kombëtare të 2026-ës. Nuk kemi lidhje me asnjë parti politike, kuvend apo institucion qeveritar.
-    </p>
-    <p>
-      Ne besojmë të fuqia e bashkimit: sa më shumë zëra bashkohen, aq më e fortë bëhet protesta. Prandaj kemi ndërtuar kanale të dedikuara për logjistikë, informim, siguri ligjore dhe koordinim lokal. Secilit qytetar, pavarësisht bindjeve, i ofrojmë një platformë të sigurt për t'u shprehur.
-    </p>
+    <p>Serveri ynë në Discord u krijua me një qëllim të vetëm: të krijojë një vend takimi për ata që duan të koordinohen, të organizohen dhe të mbështesin njëri-tjetrin në kuadër të protestës kombëtare të 2026-ës. Nuk kemi lidhje me asnjë parti politike, kuvend apo institucion qeveritar.</p>
+    
+    <p>Ne besojmë te fuqia e bashkimit: sa më shumë zëra bashkohen, aq më e fortë bëhet protesta. Prandaj kemi ndërtuar kanale të dedikuara për logjistikë, informim, siguri ligjore dhe koordinim lokal. Secilit qytetar, pavarësisht bindjeve, i ofrojmë një platformë të sigurt për t'u shprehur.</p>
 
     <div class="about-sub">
       <h3>Nuk kemi asnjë lidhje me "Kuvendin" apo ndonjë grup tjetër</h3>
@@ -712,39 +681,19 @@
 
   <div class="folk-band"></div>
 
-  <!-- Video.js Script -->
   <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
 
   <script>
-    // Initialize Video.js players
     videojs.options.flash.swf = "https://vjs.zencdn.net/7.20.3/video-js.swf";
     
-    var player1 = videojs('video1', {
-      controls: true,
-      autoplay: false,
-      preload: 'auto'
-    });
+    var player1 = videojs('video1', { controls: true, autoplay: false, preload: 'auto' });
+    var player2 = videojs('video2', { controls: true, autoplay: false, preload: 'auto' });
+    var player3 = videojs('video3', { controls: true, autoplay: false, preload: 'auto' });
 
-    var player2 = videojs('video2', {
-      controls: true,
-      autoplay: false,
-      preload: 'auto'
-    });
-
-    var player3 = videojs('video3', {
-      controls: true,
-      autoplay: false,
-      preload: 'auto'
-    });
-
-    // Page-init animation: trigger the hero reveal sequence once loaded.
     document.addEventListener('DOMContentLoaded', () => {
-      requestAnimationFrame(() => {
-        document.body.classList.add('anim-ready');
-      });
+      requestAnimationFrame(() => { document.body.classList.add('anim-ready'); });
     });
 
-    // Scroll-triggered reveal for stats & features.
     const io = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
