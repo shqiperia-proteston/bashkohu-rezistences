@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="sq">
 <head>
@@ -232,6 +233,86 @@
     transition: left .55s ease;
   }
   .btn:hover::before { left: 130%; }
+
+  /* ---------- Guide video modal ---------- */
+  .video-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(8, 8, 7, 0.88);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    backdrop-filter: blur(3px);
+  }
+
+  .video-modal-overlay.open {
+    display: flex;
+    animation: modal-fade-in .2s ease;
+  }
+
+  @keyframes modal-fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .video-modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 860px;
+    background: var(--card-bg);
+    border: 1px solid var(--hairline);
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: 0 20px 60px -20px rgba(0,0,0,0.6);
+  }
+
+  .video-modal-content video {
+    width: 100%;
+    max-height: 78vh;
+    display: block;
+    border-radius: 8px;
+    background: #000;
+  }
+
+  .video-modal-close {
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--red);
+    color: #fff;
+    border: none;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 16px -4px rgba(0,0,0,0.5);
+    transition: transform .15s ease, background-color .15s ease;
+  }
+
+  .video-modal-close:hover {
+    background: #ff2b32;
+    transform: scale(1.08);
+  }
+
+  .video-modal-title {
+    margin: 0 0 12px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--off-white);
+    letter-spacing: 0.01em;
+  }
+
+  @media (max-width: 600px) {
+    .video-modal-content { padding: 12px; border-radius: 10px; }
+    .video-modal-close { top: -12px; right: -12px; width: 32px; height: 32px; font-size: 18px; }
+  }
 
   /* ---------- Stats ---------- */
   .stats {
@@ -491,7 +572,7 @@
         </svg>
         Bashkohu në Discord
       </a>
-      <a class="btn btn-secondary" href="#" target="_blank" rel="noopener noreferrer">
+      <a class="btn btn-secondary" href="#" id="guide-video-trigger">
         I ri në Discord? Ndiq udhëzuesin <span class="arrow">→</span>
       </a>
     </div>
@@ -554,6 +635,17 @@
 
   <div class="folk-band"></div>
 
+  <div class="video-modal-overlay" id="video-modal-overlay">
+    <div class="video-modal-content">
+      <button class="video-modal-close" id="video-modal-close" aria-label="Mbyll">&times;</button>
+      <p class="video-modal-title">Udhëzuesi: Si të bashkohesh në Discord</p>
+      <video id="guide-video" controls playsinline preload="metadata">
+        <source src="Materialet-udhezuese/udhezues-discord.mp4" type="video/mp4">
+        Shfletuesi juaj nuk mbështet videon HTML5.
+      </video>
+    </div>
+  </div>
+
   <script>
     // Page-init animation: trigger the hero reveal sequence once loaded.
     document.addEventListener('DOMContentLoaded', () => {
@@ -573,6 +665,32 @@
     }, { threshold: 0.15 });
 
     document.querySelectorAll('.scroll-reveal').forEach(el => io.observe(el));
+
+    // Guide video modal.
+    const guideTrigger = document.getElementById('guide-video-trigger');
+    const modalOverlay = document.getElementById('video-modal-overlay');
+    const modalClose = document.getElementById('video-modal-close');
+    const guideVideo = document.getElementById('guide-video');
+
+    function openVideoModal(e) {
+      e.preventDefault();
+      modalOverlay.classList.add('open');
+      guideVideo.play().catch(() => {});
+    }
+
+    function closeVideoModal() {
+      modalOverlay.classList.remove('open');
+      guideVideo.pause();
+    }
+
+    guideTrigger.addEventListener('click', openVideoModal);
+    modalClose.addEventListener('click', closeVideoModal);
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) closeVideoModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modalOverlay.classList.contains('open')) closeVideoModal();
+    });
   </script>
 
 </body>
