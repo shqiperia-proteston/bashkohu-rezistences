@@ -11,6 +11,8 @@
   --red: #e11b22;
   --discord: #5865f2;
   --discord-hover: #4752c4;
+  --whatsapp: #25d366;
+  --instagram: #e1306c;
 }
 
 * {
@@ -219,6 +221,54 @@ body {
 
 .btn-secondary:hover .arrow {
   transform: translateX(5px);
+}
+
+.btn-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  margin-top: 46px;
+}
+
+.btn-group .btn-row {
+  margin-top: 0;
+}
+
+.btn-social {
+  gap: 10px;
+  background: transparent;
+  color: #fff;
+  font-weight: 600;
+  font-size: 17px;
+  padding: 16px 26px;
+  border: 1.5px solid var(--social-color);
+}
+
+.btn-social svg {
+  color: var(--social-color);
+  transition: transform 0.3s ease;
+}
+
+.btn-social:hover {
+  transform: translateY(-3px);
+  background: color-mix(in srgb, var(--social-color) 12%, transparent);
+}
+
+.btn-social:hover svg {
+  transform: rotate(-8deg) scale(1.1);
+}
+
+.btn-instagram {
+  --social-color: var(--instagram);
+}
+
+.btn-whatsapp {
+  --social-color: var(--whatsapp);
+}
+
+.btn-discord {
+  --social-color: var(--discord);
 }
 
 /* subtle shine sweep on hover */
@@ -528,7 +578,8 @@ body {
 .anim-ready .subtitle {
   animation-delay: 0.42s;
 }
-.anim-ready .btn-row {
+.anim-ready .btn-row,
+.anim-ready .btn-group {
   animation-delay: 0.55s;
 }
 
@@ -595,8 +646,18 @@ body {
     gap: 12px;
   }
 
+  .btn-group {
+    margin-top: 34px;
+    gap: 12px;
+  }
+
+  .btn-group .btn-row {
+    margin-top: 0;
+  }
+
   .btn-primary,
-  .btn-secondary {
+  .btn-secondary,
+  .btn-social {
     font-size: 17px;
   }
   .btn-secondary {
